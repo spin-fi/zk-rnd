@@ -1,0 +1,11 @@
+[package]
+name = "zk-sdk"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1.0", default-features = false }
+borsh = { version = "0.10.3", default-features = false }
+risc0-zkvm = { version = "0.15.0", default-features = false }
+rs_merkle = { version =  "1.4.1", default-features = false }
+hashbrown = { version = "0.13.2", default-features = false }

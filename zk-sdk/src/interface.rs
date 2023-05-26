@@ -1,7 +1,6 @@
 extern crate alloc;
 use alloc::string::String;
 use borsh::{BorshDeserialize, BorshSerialize};
-pub mod zk;
 
 pub trait Storage {
     fn read<K: BorshSerialize, V: BorshDeserialize>(&self, key: K) -> Option<V>;

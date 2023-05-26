@@ -1,0 +1,9 @@
+[package]
+name = "dex"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+zk-sdk = { path = "../zk-sdk", default-features = false }
+serde = { version = "1.0", default-features = false }
+borsh = { version = "0.10.3", default-features = false }

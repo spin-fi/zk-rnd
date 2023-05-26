@@ -1,12 +1,11 @@
 extern crate alloc;
 
+use crate::interface::{Logger, Metadata, Storage};
 use alloc::vec::Vec;
-use borsh::BorshDeserialize;
+use borsh::{BorshDeserialize, BorshSerialize};
 use hashbrown::HashMap;
-//use risc0_zkvm::guest::env;
 use risc0_zkvm::sha::{Impl, Sha256};
-use rs_merkle::Hasher;
-use rs_merkle::MerkleTree;
+use rs_merkle::{Hasher, MerkleTree};
 
 #[derive(Clone)]
 pub struct ZkSha;
@@ -18,27 +17,6 @@ impl Hasher for ZkSha {
         let dig = Impl::hash_bytes(data);
         let bytes = dig.as_bytes();
         <[u8; 32]>::try_from(bytes).unwrap()
-    }
-}
-
-use super::*;
-
-#[derive(BorshSerialize, BorshDeserialize, Clone)]
-pub enum ZkActionBody {
-    Call,
-}
-
-pub struct ZkAction {
-    action: ZkActionBody,
-    sender: String,
-}
-
-impl Action<ZkActionBody> for ZkAction {
-    fn body(&self) -> ZkActionBody {
-        self.action.clone()
-    }
-    fn sender(&self) -> String {
-        self.sender()
     }
 }
 
