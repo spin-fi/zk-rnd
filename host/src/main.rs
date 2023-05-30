@@ -18,10 +18,15 @@ fn main() {
         .build();
     let mut exec = Executor::from_elf(env, GUEST_METHOD_ELF).unwrap();
 
+    let start = std::time::Instant::now();
     println!("run execution...");
     let session = exec.run().unwrap();
+    println!("executed in {:?}", start.elapsed());
+
+    let start = std::time::Instant::now();
     println!("prove execution...");
     let receipt = session.prove().unwrap();
+    println!("proved in {:?}", start.elapsed());
 
     println!(
         "from {:x?}\nto   {:x?}",
@@ -30,6 +35,12 @@ fn main() {
         //from_slice::<(Digest, Digest), _>(&receipt.journal).unwrap()
     );
 
+    let start = std::time::Instant::now();
     println!("verify execution...");
     receipt.verify(GUEST_METHOD_ID).unwrap();
+    println!("verified in {:?}", start.elapsed());
+
+    println!("receipt: {} bytes", receipt.segments.get(0).unwrap().get_seal_bytes().len() as f32 / 1024.0);
+
+    println!("output: {:?}", receipt.journal);
 }

@@ -11,3 +11,4 @@ dex = { path = "../../dex", default-features = false }
 risc0-zkvm = { version = "0.15.0", default-features = false }
 #risc0-zkvm = { version = "0.15.0", features = [ "std" ] }
 borsh = { version = "0.10.3", default-features = false }
+spin = "0.9.8"

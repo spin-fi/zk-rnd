@@ -8,4 +8,5 @@ serde = { version = "1.0", default-features = false }
 borsh = { version = "0.10.3", default-features = false }
 risc0-zkvm = { version = "0.15.0", default-features = false }
 rs_merkle = { version =  "1.4.1", default-features = false }
-hashbrown = { version = "0.13.2", default-features = false }
+hashbrown = { version = "0.13.2", default-features = true }
+spin = "0.9.8"

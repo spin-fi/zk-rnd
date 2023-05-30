@@ -20,6 +20,7 @@ impl Hasher for ZkSha {
     }
 }
 
+#[derive(Default)]
 pub struct ZkStorage {
     pub storage: HashMap<Vec<u8>, Vec<u8>>,
 }
@@ -49,6 +50,14 @@ impl ZkStorage {
             [0u8; 32]
         }
     }
+
+    pub fn read_raw(&self, key: &[u8]) -> Option<&Vec<u8>> {
+        self.storage.get(key)
+    }
+
+    pub fn write_raw(&mut self, key: Vec<u8>, value: Vec<u8>) -> Option<Vec<u8>> {
+        self.storage.insert(key, value)
+    }
 }
 
 impl Storage for ZkStorage {
@@ -76,11 +85,20 @@ impl Storage for ZkStorage {
     }
 }
 
-pub struct ZkLogger;
+unsafe impl Sync for ZkStorage {}
+unsafe impl Send for ZkStorage {}
+
+pub struct ZkLogger {
+    pub data: Vec<Vec<u8>>,
+}
 
 impl Logger for ZkLogger {
-    fn log<L: BorshSerialize>(&mut self, _log: &L) {
+    fn log<L: BorshSerialize>(&mut self, log: &L) {
         // write no logs while zk execution
+        // TODO: debug only!
+        let mut new_data = Vec::new();
+        _ = log.serialize(&mut new_data);
+        self.data.push(new_data);
     }
 }
 
