@@ -40,7 +40,12 @@ fn main() {
     receipt.verify(GUEST_METHOD_ID).unwrap();
     println!("verified in {:?}", start.elapsed());
 
-    println!("receipt: {} bytes", receipt.segments.get(0).unwrap().get_seal_bytes().len() as f32 / 1024.0);
+    println!(
+        "receipt: {} bytes",
+        (receipt.segments.get(0).unwrap().get_seal_bytes().len() as f32 / 1024.0) as u32
+    );
+
+    assert_eq!(receipt.segments.len(), 1);
 
     println!("output: {:?}", receipt.journal);
 }

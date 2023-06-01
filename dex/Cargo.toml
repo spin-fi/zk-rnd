@@ -8,6 +8,7 @@ zk-sdk = { path = "../zk-sdk", default-features = false }
 serde = { version = "1.0", default-features = false }
 borsh = { version = "0.10.3", default-features = false }
 spot = { path = "../../zk-near-dex/spot/contract", features = ["no-contract", "zk"] }
+perp = { path = "../../zk-near-dex/perp/contract", features = ["zk"] }
 types = { path = "../../zk-near-dex/core/types" }
 marketplace = { path = "../../zk-near-dex/marketplace" }
 order_book = { path = "../../zk-near-dex/components/order_book" }
