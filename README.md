@@ -1,3 +1,11 @@
+# Introduction
+
+Spin did a lot of theoretical research on ZK technology and existing application solutions, so as an experiment Spin tried to run their existing spot exchange rust code with RiscZero to generate zk proof out of the box.
+
+To do this, we had to create an interface for the interaction of our exchange and the zkVM virtual machine from RiscZero. This code can be found here.
+
+There are a lot of difficult unanswered questions in this topic, but we managed to answer one of the first questions. Is it possible to create an infrastructure that allows, without changing the code, to add fast transaction execution, but be able to check the reliability of the result? Yes, it's possible.
+
 # RISC Zero Rust Starter Template
 
 Welcome to the RISC Zero Rust Starter Template! This template is intended to give you a starting point for building a project using the RISC Zero zkVM. Throughout the code are comments labelled `TODO` in places where we expect projects will need to modify the code.
